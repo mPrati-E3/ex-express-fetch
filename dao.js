@@ -14,6 +14,7 @@ exports.listCourses = function() {
     db.all(sql, [], (err, rows) => {
       if (err) {
         reject(err);
+        return;
       }
       const courses = rows.map((e) => ({code: e.code, name: e.name, CFU: e.CFU}));
       resolve(courses);
@@ -28,6 +29,7 @@ exports.readCourseByCode = function(code) {
     db.get(sql, [code], (err, row) => {
       if (err) {
         reject(err);
+        return;
       }
       if (row == undefined) {
         resolve({});
@@ -48,6 +50,7 @@ exports.listExams = function() {
     db.all(sql, (err, rows) => {
       if (err) {
         reject(err);
+        return;
       }
 
       // transform 'rows' of query results into an array of objects
@@ -70,6 +73,7 @@ exports.createExam = function(exam) {
     db.run(sql, [exam.coursecode, exam.date, exam.score], (err) => {
       if (err) {
         reject(err);
+        return;
       }
       resolve(this.lastID);
     });
