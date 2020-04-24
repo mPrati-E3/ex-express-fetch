@@ -1,7 +1,7 @@
 'use strict';
 
 // DAO module for accessing courses and exams
-// Data Access Object 
+// Data Access Object
 
 const sqlite = require('sqlite3');
 const db = new sqlite.Database('exams.sqlite', (err) => {
@@ -70,7 +70,7 @@ exports.listExams = function() {
 exports.createExam = function(exam) {
   return new Promise((resolve, reject) => {
     const sql = 'INSERT INTO exam(course_code, date, score) VALUES(?, DATE(?), ?)';
-    db.run(sql, [exam.coursecode, exam.date, exam.score], (err) => {
+    db.run(sql, [exam.coursecode, exam.date, exam.score], function (err) {
       if (err) {
         reject(err);
         return;
