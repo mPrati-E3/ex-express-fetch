@@ -16,6 +16,10 @@ app.use(express.json());
 app.use(express.static('client'));
 app.get('/', (req, res) => res.redirect('/index.html'));
 
+// DB error
+const dbErrorObj = { errors: [{'param': 'Server', 'msg': 'Database error'}] };
+
+
 // REST API endpoints
 
 // Resources: Course, Exam
@@ -26,8 +30,8 @@ app.get('/', (req, res) => res.redirect('/index.html'));
 // Errors: none
 app.get('/courses', (req, res) => {
   dao.listCourses()
-    .then((courses) => { res.json(courses); })
-    .catch(() => { res.status(500).end(); });
+    .then((courses) => res.json(courses) )
+    .catch((err)=>res.status(503).json(dbErrorObj));
 });
 
 
@@ -37,8 +41,8 @@ app.get('/courses', (req, res) => {
 // Error: if the course does not exist, returns {}
 app.get('/courses/:code', (req, res) => {
   dao.readCourseByCode(req.params.code)
-    .then((course) => { res.json(course); })
-    .catch(() => { res.status(500).end(); });
+    .then((course) => res.json(course) )
+    .catch((err)=>res.status(503).json(dbErrorObj));
 });
 
 
@@ -46,8 +50,8 @@ app.get('/courses/:code', (req, res) => {
 // GET /exams
 app.get('/exams', (req, res) => {
   dao.listExams()
-    .then((exams) => { res.json(exams); })
-    .catch(() => { res.status(500).end(); });
+  .then((exams) => res.json(exams))
+  .catch((err)=>res.status(503).json(dbErrorObj));
 });
 
 
@@ -70,9 +74,7 @@ app.post('/exams', [
     score: req.body.score,
     date: req.body.date
   }).then((result) => res.end())
-  .catch((err) => res.status(503).json({
-    errors: [{'param': 'Server', 'msg': 'Database error'}],
-  }));
+  .catch((err) => res.status(503).json(dbErrorObj));
 });
 
 
