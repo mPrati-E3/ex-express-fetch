@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Index mage</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src='main.js' type='module'></script>
+</head>
+
+<body>
+  <div class='container'>
+    <h1>Hello</h1>
+    <div id='errorMsg'>
+      <!-- Place for an error message to show -->
+    </div>
+    <div>
+      <table class='table' id='results'>
+        <thead>
+          <th>Course</th>
+          <th>Score</th>
+          <th>Date</th>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          
+        </tr>
+        </tfoot>
+        <caption>Your Scores <button type="button" class='btn btn-link float-right ' id='add-button' title="Add"><svg class="bi bi-plus-circle-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="green" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
+        </svg></button></caption>
+      </table>
+      
+    </div>
+
+    <div id='add-exam-form' class='jumbotron'>
+      <form id='actions'>
+        <div class='form-row'>
+          <div class='form-group col-6'>
+            <label for='userid'>Course</label>
+            <select class="form-control" name='coursecode'>
+            </select>
+          </div>
+          <div class='form-group col-3'>
+            <label for='examscore'>Score</label>
+            <!-- easier testing of server side validation
+              <input type='number' step='any' min=0 max=31 required name='examscore' class='form-control' />
+            -->
+            <input type='number' min=18 max=31 required name='examscore' class='form-control' />
+          </div>
+          <div class='form-group col-3'>
+            <label for='examdate'>Date</label>
+            <input type='date' name='examdate' required class='form-control'/>
+          </div>
+
+        </div>
+        <button id='savebutton' class='btn btn-primary'>Save</button>
+        <button id='cancelbutton' class='btn btn-secondary'>Cancel</button>
+
+      </form>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>
