@@ -47,13 +47,30 @@ async function initializeForm() {
     // set event handler for 'Save', to submit the new exam to the server
     thisForm.elements.savebutton.addEventListener('click', () => {
         if (thisForm.checkValidity()) {
-            // send data to server
+            // valid
             const exam = new Exam(thisForm.coursecode.value, thisForm.examscore.value, thisForm.examdate.value);
             Api.insertNewExam(exam)
-                .then(() => populateScores());
+                .then(() => populateScores())
+                .catch((errorObj) => {
+                    if (errorObj) {
+                        const err0 = errorObj.errors[0];
+                        const errorString = err0.param + ': ' + err0.msg;
+                        // add an alert message in DOM
+                        document.getElementById('errorMsg').innerHTML = `
+            <div class="alert alert-danger alert-dismissible fade show" role="danger">
+              <strong>Error:</strong> <span>${errorString}</span> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>`;
+                    }
+                });
+
+            document.getElementById('add-exam-form').classList.add('invisible');
+            document.getElementById('add-button').classList.remove('invisible');
         }
     });
-
+    
     // preload course names in dropdown menu
     const courses = await Api.getAllCourses();
     const select = thisForm.elements.coursecode;

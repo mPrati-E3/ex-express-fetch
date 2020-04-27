@@ -10,7 +10,7 @@ async function getAllExams() {
     if (response.ok) {
         return exams_json.map((ex) => Exam.from(ex));
     } else {
-        throw 'ERROR in GET /exams';
+        throw jsonexams;  // An object with the error coming from the server
     }
 }
 
@@ -26,10 +26,12 @@ async function insertNewExam(exam) {
             if(response.ok) {
                 resolve(null);
             } else {
-                reject(null);
-                // TODO: inspect the response to get the cause of error
-            }
-        })
+                // analyze the cause of error
+                response.json()
+                .then( (obj) => {reject(obj);} ) // error msg in the response body
+                .catch( (err) => {reject({ errors: [{ param: "Application", msg: "Cannot parse server response" }] }) }); // something else
+                  }
+        }).catch( (err) => {reject({ errors: [{ param: "Server", msg: "Cannot communicate" }] }) }); // connection errors
     });
     
 }
