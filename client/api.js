@@ -10,7 +10,7 @@ async function getAllExams() {
     if (response.ok) {
         return exams_json.map((ex) => Exam.from(ex));
     } else {
-        throw jsonexams;  // An object with the error coming from the server
+        throw exams_json;  // An object with the error coming from the server
     }
 }
 
