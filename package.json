@@ -5,9 +5,9 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.17.1",
-    "express-validator": "^6.4.0",
+    "express-validator": "^6.10.0",
     "morgan": "^1.10.0",
-    "sqlite3": "^4.1.1"
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

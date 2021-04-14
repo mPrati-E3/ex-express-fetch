@@ -62,13 +62,16 @@ app.get('/exams', (req, res) => {
 // Response body: empty (ALTERNATIVE: new 'id' for the inserted course)
 //    (ALTERNATIVE: return a full copy of the Exam)
 app.post('/exams', [
+  // I'll control the input 
   check('score').isInt({min: 18, max: 30}),
   check('coursecode').isLength({min: 7, max: 7}),
 ], (req, res) => {
   const errors = validationResult(req);
+  // if I find an error, return with an error code
   if (!errors.isEmpty()) {
     return res.status(422).json({errors: errors.array()});
   }
+  // calling the dao to create an exam in the database (this is async so I have to wait for a response)
   dao.createExam({
     coursecode: req.body.coursecode,
     score: req.body.score,

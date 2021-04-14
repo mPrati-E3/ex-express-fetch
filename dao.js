@@ -3,11 +3,13 @@
 // DAO module for accessing courses and exams
 // Data Access Object
 
+// Call sqlite3 to open the database and save it in db
 const sqlite = require('sqlite3');
 const db = new sqlite.Database('exams.sqlite', (err) => {
   if (err) throw err;
 });
 
+// I'll export a function that return a Promise that call a query on the database to get all courses
 exports.listCourses = function() {
   return new Promise((resolve, reject) => {
     const sql = 'SELECT * FROM course';
@@ -22,7 +24,7 @@ exports.listCourses = function() {
   });
 };
 
-
+// I'll export a function that return a Promise that call a query on the database to get all courses with a determined code
 exports.readCourseByCode = function(code) {
   return new Promise((resolve, reject) => {
     const sql = 'SELECT * FROM course WHERE code=?';
@@ -41,10 +43,10 @@ exports.readCourseByCode = function(code) {
   });
 };
 
+// I'll export a function that return a Promise that call a query on the database to get all exams
 exports.listExams = function() {
   return new Promise((resolve, reject) => {
-    const sql = 'SELECT course_code, score, date, name FROM exam, course' +
-      ' WHERE course_code=code';
+    const sql = 'SELECT course_code, score, date, name FROM exam, course WHERE course_code=code';
 
     // execute query and get all results into `rows`
     db.all(sql, (err, rows) => {
@@ -67,6 +69,7 @@ exports.listExams = function() {
   });
 };
 
+// I'll export a function that return a Promise that call a query on the database to insert a new exam
 exports.createExam = function(exam) {
   return new Promise((resolve, reject) => {
     const sql = 'INSERT INTO exam(course_code, date, score) VALUES(?, DATE(?), ?)';
@@ -75,6 +78,7 @@ exports.createExam = function(exam) {
         reject(err);
         return;
       }
+      // returning lastID is not mandatory, it's a convention to know how many records I have in the table
       resolve(this.lastID);
     });
   });

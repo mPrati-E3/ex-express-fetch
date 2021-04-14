@@ -1,5 +1,7 @@
 'use strict';
 
+// Simple js file to test the correct working of the dao and his connection with the database
+
 const dao = require('./dao.js');
 
 dao.listCourses().then((value)=>{

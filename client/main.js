@@ -23,8 +23,11 @@ async function populateScores() {
 }
 
 async function initializeForm() {
+
+    // I'll get the information about the form in my html page
     const thisForm = document.forms.actions;
 
+    // eliminate the default operation on the form
     thisForm.addEventListener('submit', (ev) => {
         ev.preventDefault();
     });
@@ -49,6 +52,9 @@ async function initializeForm() {
         if (thisForm.checkValidity()) {
             // valid
             const exam = new Exam(thisForm.coursecode.value, thisForm.examscore.value, thisForm.examdate.value);
+            // I'll call the API to insert a new exam, I'll pass it to the server who will save it into the db
+            // if the Api.insertNewExam(exam) went well, THEN I'll populate the score table with all the tasks
+            // including the new one
             Api.insertNewExam(exam)
                 .then(() => populateScores())
                 .catch((errorObj) => {
@@ -57,15 +63,16 @@ async function initializeForm() {
                         const errorString = err0.param + ': ' + err0.msg;
                         // add an alert message in DOM
                         document.getElementById('errorMsg').innerHTML = `
-            <div class="alert alert-danger alert-dismissible fade show" role="danger">
-              <strong>Error:</strong> <span>${errorString}</span> 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>`;
+                            <div class="alert alert-danger alert-dismissible fade show" role="danger">
+                                <strong>Error:</strong> 
+                                <span>${errorString}</span> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>`;
                     }
                 });
-
+                
             document.getElementById('add-exam-form').classList.add('invisible');
             document.getElementById('add-button').classList.remove('invisible');
         }

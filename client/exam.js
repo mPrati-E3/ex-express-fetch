@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Information about an exam being passed
+ * Information about an exam being passed (bean)
  */
 class Exam {
   /**

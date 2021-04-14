@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Object describing a course
+ * Object describing a course (bean)
  */
 class Course {
   /**

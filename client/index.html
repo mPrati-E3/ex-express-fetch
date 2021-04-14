@@ -2,13 +2,20 @@
 <html>
 
 <head>
+
+  <!-- meta -->
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <title>Index mage</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <!-- css -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- js -->
   <script src='main.js' type='module'></script>
+
 </head>
 
 <body>
@@ -18,28 +25,41 @@
       <!-- Place for an error message to show -->
     </div>
     <div>
+      <!-- Top table used for index -->
       <table class='table' id='results'>
         <thead>
           <th>Course</th>
           <th>Score</th>
           <th>Date</th>
         </thead>
-        <tbody></tbody>
+        <tbody>
+
+        </tbody>
         <tfoot>
           <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          
-        </tr>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+            <td>
+
+            </td> 
+          </tr>
         </tfoot>
-        <caption>Your Scores <button type="button" class='btn btn-link float-right ' id='add-button' title="Add"><svg class="bi bi-plus-circle-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="green" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
-        </svg></button></caption>
-      </table>
-      
+        <!-- Foot of the table with a string and a designed simbol with svg -->
+        <caption>Your Scores 
+          <button type="button" class='btn btn-link float-right ' id='add-button' title="Add">
+            <svg class="bi bi-plus-circle-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="green" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </caption>
+      </table> 
     </div>
 
+    <!-- Main div (jumbotron) where I have the input form -->
     <div id='add-exam-form' class='jumbotron'>
       <form id='actions'>
         <div class='form-row'>
